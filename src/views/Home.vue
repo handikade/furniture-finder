@@ -17,7 +17,8 @@
       </ui-grid>
     </app-header>
     <app-content>
-      <ui-grid>
+      <product-loader v-if="isInitializing"/>
+      <ui-grid v-if="!isInitializing">
         <product-card
           v-for="(product, key) in filteredProducts"
           :key="key"
@@ -41,6 +42,8 @@
   import AppContent from "@/components/AppContent";
   import ProductCard from "@/components/ProductCard";
 
+  import ProductLoader from "@/components/ProductLoader";
+
   import axios from "axios";
 
   export default {
@@ -51,7 +54,8 @@
       ProductCard,
       InputSearch,
       InputSelect,
-      UiGrid
+      UiGrid,
+      ProductLoader
     },
     data() {
       return {
@@ -64,17 +68,23 @@
           keyword: "",
           styles: [],
           deliveryTime: ""
-        }
+        },
+        isInitializing: true
       };
     },
     computed: {},
     methods: {
       init() {
-        axios.get(this.url).then(res => {
-          this.furnitureStyleOptions = res.data.furniture_styles;
-          this.products = res.data.products;
-          this.filteredProducts = this.products;
-        });
+        axios
+          .get(this.url)
+          .then(res => {
+            this.furnitureStyleOptions = res.data.furniture_styles;
+            this.products = res.data.products;
+            this.filteredProducts = this.products;
+          })
+          .finally(() => {
+            this.isInitializing = false;
+          });
       },
       filter() {
         this.filteredProducts = this.products.filter(product => {
