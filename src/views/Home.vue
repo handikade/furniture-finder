@@ -55,7 +55,7 @@
     },
     data() {
       return {
-        url: "http://www.mocky.io/v2/5c9105cb330000112b649af8",
+        url: "https://www.mocky.io/v2/5c9105cb330000112b649af8",
         furnitureStyleOptions: [],
         deliveryTimeOptions: ["Any", "1 Week", "2 Weeks", "1 Month", "More"],
         products: [],
