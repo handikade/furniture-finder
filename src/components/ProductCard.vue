@@ -15,6 +15,11 @@
 </template>
 
 <script>
+  /**
+   * Card for displaying product data
+   *
+   * @displayName Product Card
+   */
   import UiCard from "@/components/__ui/card/UiCard";
   import UiChip from "@/components/__ui/chip/UiChip";
 

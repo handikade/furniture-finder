@@ -1,10 +1,16 @@
 <template>
   <div class="ui-chip">
+    <!-- @slot Use this slot content -->
     <slot/>
   </div>
 </template>
 
 <script>
+  /**
+   * Chip component
+   *
+   * @displayName Ui Chip
+   */
   export default {
     name: "UiChip"
   };

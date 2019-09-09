@@ -5,6 +5,11 @@
 </template>
 
 <script>
+  /**
+   * Loading component for products
+   *
+   * @displayName Product Loader
+   */
   import UiLoader from "@/components/__ui/loader/UiLoader";
 
   export default {

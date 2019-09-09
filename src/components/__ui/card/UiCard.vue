@@ -1,10 +1,16 @@
 <template>
   <div class="ui-card">
+    <!-- @slot Use this slot content -->
     <slot/>
   </div>
 </template>
 
 <script>
+  /**
+   * Card component
+   *
+   * @displayName Ui Card
+   */
   export default {
     name: "UiCard"
   };

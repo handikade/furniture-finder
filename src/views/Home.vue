@@ -34,6 +34,12 @@
 </template>
 
 <script>
+  /**
+   * Main view of the app
+   *
+   * @displayName Home
+   */
+
   import AppHeader from "@/components/AppHeader";
   import InputSearch from "@/components/InputSearch";
   import UiGrid from "@/components/__ui/grid/UiGrid";
@@ -47,7 +53,7 @@
   import axios from "axios";
 
   export default {
-    name: "home",
+    name: "Home",
     components: {
       AppHeader,
       AppContent,
@@ -72,8 +78,10 @@
         isInitializing: true
       };
     },
-    computed: {},
     methods: {
+      /**
+       * Gets called on page init. Retrieving product data from the API.
+       */
       init() {
         axios
           .get(this.url)
@@ -86,37 +94,76 @@
             this.isInitializing = false;
           });
       },
+      /**
+       * Filter product according to the query
+       */
       filter() {
         this.filteredProducts = this.products.filter(product => {
           return (
-            this.processKeyword(product.name, this.query.keyword) &&
-            this.processStyles(product.furniture_style, this.query.styles) &&
-            this.processDeliveryTime(
-              product.delivery_time,
-              this.query.deliveryTime
-            )
+            this.checkKeyword(product.name, this.query.keyword) &&
+            this.checkStyles(product.furniture_style, this.query.styles) &&
+            this.checkDeliveryTime(product.delivery_time, this.query.deliveryTime)
           );
         });
       },
+      /**
+       * Gets called on search input
+       *
+       * @param {String} keyword The keyword from search input
+       */
       filterByKeyword(keyword) {
         this.query.keyword = keyword;
+
+        // Calling the filter funtion
         this.filter();
       },
-      processKeyword(productName, keyword) {
+      /**
+       * Return true when product name match with search input
+       *
+       * @param {String} productName
+       * @param {String} keyword
+       */
+      checkKeyword(productName, keyword) {
         return productName.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
       },
+      /**
+       * Gets called when user select furniture styles
+       *
+       * @param {Array} styles The style value from selectipn
+       */
       filterByStyles(styles) {
         this.query.styles = styles;
+
+        // Calling the filter funtion
         this.filter();
       },
-      processStyles(productStyles, filterStyles) {
+      /**
+       * Check if product's furniture styles match
+       * 
+       * @param {Array} productStyles Product's furniture styles
+       * @param {Array} filterStyles FUrniture styles from user selection
+       */
+      checkStyles(productStyles, filterStyles) {
         return filterStyles.every(style => productStyles.includes(style));
       },
+      /**
+       * Gets called when user select delivery
+       *
+       * @param {Number} deliveryTime The delivery time value from selection
+       */
       filterByDeliveryTime(deliveryTime) {
         this.query.deliveryTime = deliveryTime;
+
+        // Calling the filter funtion
         this.filter();
       },
-      processDeliveryTime(productDelveryTime, deliveryTime) {
+      /**
+       * Check if product delivery time match
+       * 
+       * @param {Number} productDeliveryTime Products delivery time
+       * @param {Number} deliveryTime Delivery time from user selection
+       */
+      checkDeliveryTime(productDelveryTime, deliveryTime) {
         switch (deliveryTime) {
           case "1 Week":
             return productDelveryTime == 7;

@@ -3,7 +3,6 @@
     <input
       class="input-search__input"
       type="text"
-      :value="value"
       @input="handleInput"
       placeholder="Search furniture..."
     >
@@ -14,18 +13,28 @@
 </template>
 
 <script>
+  /**
+   * Input search component
+   *
+   * @displayName Input Search
+   */
   export default {
     name: "InputSearch",
-    props: {
-      value: { type: String, default: "" }
-    },
     data() {
       return {
         searchIcon: require("@/assets/search.svg")
       };
     },
     methods: {
+      /**
+       * Gets called on user input
+       */
       handleInput(e) {
+        /**
+         * Input event
+         *
+         * @type {string}
+         */
         this.$emit("input", e.target.value);
       }
     }

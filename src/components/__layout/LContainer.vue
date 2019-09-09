@@ -1,10 +1,16 @@
 <template>
   <div class="layout-container">
+    <!-- @slot Use this slot content -->
     <slot/>
   </div>
 </template>
 
 <script>
+  /**
+   * Container component
+   *
+   * @displayName Layout Container
+   */
   export default {
     name: "LayoutContainer"
   };

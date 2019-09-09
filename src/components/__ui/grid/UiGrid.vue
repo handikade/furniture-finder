@@ -1,10 +1,16 @@
 <template>
   <div class="ui-grid">
+    <!-- @slot Use this slot content -->
     <slot/>
   </div>
 </template>
 
 <script>
+  /**
+   * Two columns grid component component
+   *
+   * @displayName Ui Grid
+   */
   export default {
     name: "UiGrid"
   };

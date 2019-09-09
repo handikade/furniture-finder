@@ -12,20 +12,35 @@
 </template>
 
 <script>
+  /**
+   * Multiple select input component
+   *
+   * @displayName Input Select
+   */
   import Multiselect from "vue-multiselect";
+
   export default {
     name: "InputSelect",
     components: {
       Multiselect
     },
     props: {
+      /**
+       * Select options
+       */
       options: {
         type: Array,
         default() {
           [];
         }
       },
+      /**
+       * Multiple select
+       */
       multiple: { type: Boolean, default: false },
+      /**
+       * Input label
+       */
       label: { type: String, default: "" }
     },
     data() {
@@ -34,7 +49,15 @@
       };
     },
     methods: {
+      /**
+       * Gets called on user input
+       */
       handleInput(value) {
+        /**
+         * Input event
+         *
+         * @type {array}
+         */
         this.$emit("input", value);
       }
     }

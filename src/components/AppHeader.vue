@@ -2,6 +2,7 @@
   <div class="app-header">
     <l-container>
       <div class="app-header__content">
+        <!-- @slot Use this slot content -->
         <slot/>
       </div>
     </l-container>
@@ -9,6 +10,12 @@
 </template>
 
 <script>
+  /**
+   * Header component displaying searchbar and filter selection
+   *
+   * @displayName App Header
+   */
+
   import LContainer from "@/components/__layout/LContainer";
 
   export default {

@@ -2,6 +2,7 @@
   <div class="app-content">
     <l-container>
       <div class="app-content__content">
+        <!-- @slot Use this slot content -->
         <slot/>
       </div>
     </l-container>
@@ -9,6 +10,12 @@
 </template>
 
 <script>
+  /**
+   * Content component displaying products
+   *
+   * @displayName App Content
+   */
+
   import LContainer from "@/components/__layout/LContainer.vue";
 
   export default {

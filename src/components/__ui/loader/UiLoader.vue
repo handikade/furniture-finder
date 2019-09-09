@@ -3,6 +3,11 @@
 </template>
 
 <script>
+  /**
+   * Spinning circle component
+   *
+   * @displayName Ui Loader
+   */
   export default {
     name: "UiLoader"
   };
